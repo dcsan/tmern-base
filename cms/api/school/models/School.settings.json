@@ -1,0 +1,25 @@
+{
+  "connection": "default",
+  "collectionName": "schools",
+  "info": {
+    "name": "school",
+    "description": "a place that serves meals"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": [
+      "created_at",
+      "updated_at"
+    ],
+    "comment": ""
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "meals": {
+      "collection": "meal",
+      "via": "school"
+    }
+  }
+}
