@@ -6,6 +6,6 @@ const testData = {
     { name: 'Sushi', value: 0.5 },
     { name: 'Miso soup', value: 5.1 },
   ],
-};
+}
 
-export default testData;
+export default testData
