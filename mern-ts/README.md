@@ -30,6 +30,12 @@ if you want to change them back you can do this throughout the app:
 
     npx tslint -p tsconfig.json --fix
 
+prettier is also in the app, as a pre-commit hook.
+you can run this manually from toplevel. this will fix quotes, tabs, newlines etc.
+
+  yarn pretty
+
+
 
 
 ----
