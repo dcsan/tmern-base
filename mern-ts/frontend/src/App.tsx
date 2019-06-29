@@ -50,6 +50,11 @@ class App extends React.Component<{}, AppState> {
             <button disabled={this.state.isRequesting} onClick={this.getTestData}>
               Get test data
             </button>
+
+            <button disabled={this.state.isRequesting} onClick={this.reloadTestData}>
+              Reload test data
+            </button>
+
             <button disabled={this.state.isRequesting} onClick={this.logout}>
               Log out
             </button>
@@ -103,6 +108,18 @@ class App extends React.Component<{}, AppState> {
     try {
       this.setState({ error: "" });
       const response = await axios.get<App.Item[]>("/api/items", { headers: getAuthHeaders() });
+      this.setState({ data: response.data });
+    } catch (error) {
+      this.setState({ error: "Something went wrong" });
+    } finally {
+      this.setState({ isRequesting: false });
+    }
+  };
+
+  private reloadTestData = async (): Promise<void> => {
+    try {
+      this.setState({ error: "" });
+      const response = await axios.get<App.Item[]>("/api/items/reload", { headers: getAuthHeaders() });
       this.setState({ data: response.data });
     } catch (error) {
       this.setState({ error: "Something went wrong" });

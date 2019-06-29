@@ -2,8 +2,15 @@ import * as bodyParser from "body-parser";
 import * as express from "express";
 import { authorize } from "../config";
 import Item from "./item.model";
+import SeedData from "../../scripts/SeedData";
 
 const router = express.Router();
+
+router.route("/reload").get(authorize, async (_, response) => {
+  await SeedData.reload({ force: true });
+  const items = await Item.find();
+  return response.status(200).json(items);
+});
 
 router.route("/").get(authorize, async (_, response) => {
   const items = await Item.find();

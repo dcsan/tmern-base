@@ -20,6 +20,18 @@ in top level
 this will start client and server apps using `concurrently`
 
 
+## linter preferences
+I made some tslint changes to my style
+
+    "semicolon": [true, "never"],
+    "quotemark": [true, "single"]
+
+if you want to change them back you can do this throughout the app:
+
+    npx tslint -p tsconfig.json --fix
+
+
+
 ----
 
 

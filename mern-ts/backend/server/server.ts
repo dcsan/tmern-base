@@ -13,9 +13,9 @@ const port = process.env.PORT || 9000;
   logger.info("connected to ", mongoUri);
 
   // Populate database with sample data if it's empty
-  await SeedData.reload();
+  await SeedData.reload({ force: false });
   await SeedData.addSuperUser();
   // Start express App
   app.listen(port);
-  console.log(`App listening on port ${port}...`);
+  console.log(`server listening on port: ${port}`);
 })();

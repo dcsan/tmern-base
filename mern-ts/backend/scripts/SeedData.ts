@@ -4,24 +4,23 @@ import User from "../server/users/user.model";
 import Logger from "../server/utils/Logger";
 const logger = new Logger("SeedData");
 
+import testData from "../data/testData";
+
 const SeedData = {
-  async reload() {
+  async reload({ force = false }) {
+    if (force) {
+      logger.info("remove test data");
+      await Item.remove({});
+    }
     logger.info("reload");
     try {
       const items = await Item.find({});
-      if (items.length === 0) {
-        logger.info("No items in the database creating sample data...");
-        const newItems = [
-          { name: "Paper clip", value: 0.1 },
-          { name: "Colorful pen", value: 1.2 },
-          { name: "Notebook", value: 2.5 },
-          { name: "Soft eraser", value: 0.5 },
-          { name: "Table lamp", value: 5.1 },
-        ];
-        await Item.insertMany(newItems);
-        logger.info(`${newItems.length} item(s) successfuly created!`);
-      } else {
+      if (items.length !== 0) {
         logger.warn("Database already initiated, skipping populating script");
+      } else {
+        logger.info("No items in the database creating sample data...");
+        await Item.insertMany(testData.items);
+        logger.info(`${testData.items.length} item(s) successfuly created!`);
       }
     } catch (error) {
       logger.error(error);
