@@ -13,22 +13,23 @@ fs.readdirSync("node_modules")
 
 module.exports = {
   entry: "./server/server.ts",
-  output: {
-    path: path.join(__dirname, "/build"),
-    filename: "server.js",
-  },
-  resolve: {
-    extensions: [".webpack.js", ".web.js", ".ts", ".tsx", ".js"],
-  },
+  externals: nodeModules,
+
   module: {
     loaders: [
       {
-        test: /\.tsx?$/,
         loader: "ts-loader",
+        test: /\.tsx?$/,
       },
     ],
   },
-  target: "node",
-  externals: nodeModules,
+  output: {
+    filename: "server.js",
+    path: path.join(__dirname, "/build"),
+  },
   plugins: [new NodemonPlugin()],
+  resolve: {
+    extensions: [".webpack.js", ".web.js", ".ts", ".tsx", ".js"],
+  },
+  target: "node",
 };
