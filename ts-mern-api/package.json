@@ -16,8 +16,8 @@
     "test:coverage": "cross-env NODE_ENV=testing && rm -rf coverage/* && tsc && node --harmony_default_parameters ./node_modules/istanbul/lib/cli.js cover _mocha --harmony_default_parameters -- dist/tests/ --recursive --color --growl --timeout 120000"
   },
   "dependencies": {
-    "body-parser": "^1.18.2",
-    "express": "^4.16.2",
+    "body-parser": "^1.20.1",
+    "express": "^4.18.2",
     "mongoose": "^4.13.6",
     "swagger-jsdoc": "^1.9.7",
     "mockgoose-fix": "~7.3.6"
